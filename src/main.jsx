@@ -32,7 +32,7 @@ const PRICE_SNAPSHOT_DATE = '2026-10-27';
 // Google Maps key
 const MAPS_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '';
 // Contact email
-const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'ebbadurehman538@gmail.com';
+const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'ebbadurrehman538@gmail.com';
 // WhatsApp contact number
 const CONTACT_WHATSAPP_NUMBER = '923137813498';
 const CONTACT_WHATSAPP_DISPLAY = '0313 7813498';
