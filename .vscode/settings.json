@@ -4,8 +4,5 @@
   },
   "search.exclude": {
     "**/dist": true
-  },
-  "markdownlint.config": {
-    "MD013": false
   }
 }
