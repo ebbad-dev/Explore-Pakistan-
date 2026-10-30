@@ -18,7 +18,7 @@ Requires Node.js 18 or newer.
 ## Source layout
 
 | File | Purpose |
-|---|---|
+| --- | --- |
 | `index.html` | HTML shell, fonts, metadata, `#root` |
 | `src/main.jsx` | Main React application code, components, and views |
 | `src/style.css` | Custom styling and design tokens |
@@ -59,7 +59,7 @@ Add `VITE_GOOGLE_MAPS_API_KEY` as an environment variable in the host's settings
 ### Tour-rate verification log (checked 27 October 2026)
 
 | Tour listing | Advertised starting price | Source |
-|---|---:|---|
+| --- | ---: | --- |
 | Hunza Valley, 5–7 days | PKR 28,500/person | [Travelon Today](https://travelontoday.com/hunza-valley-tour-packages/) |
 | Skardu, 6–8 days | PKR 32,500/person | [Travelon Today](https://travelontoday.com/skardu-tour-packages/) |
 | Hunza + Skardu, 8–10 days | PKR 46,500/person | [Travelon Today](https://travelontoday.com/hunza-skardu-tour-packages/) |
@@ -104,7 +104,6 @@ These are published starting or stated-option prices observed on the linked page
 - **Trade-off:** one source file keeps the project explainable for assessment; a
   production team would split it into modules and lazy-load routes.
 
-
 ## Release-pass changes (27 October 2026)
 
 - Curated, local WebP photo library (max 1600px width with 640px thumbnails) directly inlined in `DESTINATIONS` in `src/main.jsx`.
@@ -121,4 +120,3 @@ These are published starting or stated-option prices observed on the linked page
 Profiles live in the browser only; passwords are validated but never stored or verified, and
 password reset sends nothing. Before a real launch, add a backend with server-side registration,
 password hashing, sessions, emailed reset links and authorisation checks.
-
