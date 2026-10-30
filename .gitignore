@@ -1,0 +1,8 @@
+node_modules
+dist
+.env.local
+.env.*.local
+media-review.html
+src/data/*.bak
+__pycache__/
+*.py[cod]
