@@ -1,7 +1,8 @@
 // Explore Pakistan — Travel Guide & Trip Planner
 // Core Imports & App Constants
-import React, {
-  createContext, useCallback, useContext, useEffect, useId, useMemo, useRef, useState,
+import {
+  Children, cloneElement, Component, createContext, Fragment, useCallback,
+  useContext, useEffect, useId, useMemo, useRef, useState,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { createRoot } from 'react-dom/client';
@@ -15,9 +16,9 @@ import {
   AlertCircle, ArrowDown, ArrowRight, ArrowUp, Backpack, BadgeCheck, Bed, BookOpen, Bookmark,
   BookmarkCheck, Calendar, Camera, Car, Check, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight,
   Clock, Coins, Compass, Copy, Crown, ExternalLink, Eye, EyeOff, Footprints, Gem, Heart, HelpCircle,
-  Info, Landmark, LayoutGrid, Leaf, List, Lock, LogIn, LogOut, Mail, Map as MapIcon, MapPin, MapPinned,
-  Menu, MessageCircle, Mountain, Navigation, Pause, Pencil, Play, Plus, Printer, Receipt, RotateCcw,
-  Route as RouteIcon, Scale, Search, Send, Share2, Shield, SlidersHorizontal, Snowflake, Sparkles,
+  Info, Landmark, LayoutGrid, Leaf, List, Lock, LogOut, Mail, Map as MapIcon, MapPin, MapPinned,
+  Menu, Mountain, Navigation, Pause, Pencil, Play, Plus, Printer, Receipt, RotateCcw,
+  Route as RouteIcon, Scale, Search, Send, Share2, Shield, SlidersHorizontal, Snowflake,
   Square, Sun, Ticket, Trash2, Trees, User, Users, Utensils, Volume2, VolumeX, Wallet, Waves, X,
 } from 'lucide-react';
 
@@ -1721,11 +1722,11 @@ function useDocumentTitle(title) {
 function Field({ label, error, hint, children, id }) {
   const autoId = useId();
   const fieldId = id || autoId;
-  const child = React.Children.only(children);
+  const child = Children.only(children);
   return (
     <div className={cx('field', error && 'has-error')}>
       <label htmlFor={fieldId}>{label}</label>
-      {React.cloneElement(child, {
+      {cloneElement(child, {
         id: fieldId,
         'aria-invalid': error ? 'true' : undefined,
         'aria-describedby': error ? `${fieldId}-err` : hint ? `${fieldId}-hint` : undefined,
@@ -2424,7 +2425,7 @@ function PackageCard({ pkg, compact }) {
       <div className="pkg-card__top">
         <p className="pkg-card__operator">{pkg.operatorName}</p>
         <h3 className="pkg-card__title">{pkg.title}</h3>
-        <p className="pkg-card__dests">{dests.map((d, i) => <React.Fragment key={d.id}>{i > 0 && ' + '}<Link to={`/destinations/${d.id}`}>{d.name}</Link></React.Fragment>)}</p>
+        <p className="pkg-card__dests">{dests.map((d, i) => <Fragment key={d.id}>{i > 0 && ' + '}<Link to={`/destinations/${d.id}`}>{d.name}</Link></Fragment>)}</p>
       </div>
       <PriceTag pkg={pkg} />
       {member && (
@@ -5247,7 +5248,7 @@ function NotFoundPage() {
 // Routes & Application Entry
 
 // Error boundary
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends Component {
   constructor(props) { super(props); this.state = { error: null }; }
   static getDerivedStateFromError(error) { return { error }; }
   componentDidCatch(error, info) { console.error('[Explore Pakistan] view error', error, info); }
