@@ -2570,16 +2570,60 @@ function Hero() {
   );
 }
 
-// Schematic dot map
+// Schematic dot map with connecting travel routes
 function SchematicMap({ highlight }) {
   const bounds = { minLat: 24, maxLat: 37, minLng: 61, maxLng: 77.5 };
   const pos = ({ lat, lng }) => ({
     x: ((lng - bounds.minLng) / (bounds.maxLng - bounds.minLng)) * 100,
     y: ((bounds.maxLat - lat) / (bounds.maxLat - bounds.minLat)) * 100,
   });
+
+  const getPos = (id) => {
+    const d = DESTINATIONS.find((item) => item.id === id);
+    return d ? pos(d.coords) : null;
+  };
+
+  const routeCorridors = [
+    // Main Karakoram & Indus Highway Spine
+    ['hunza', 'fairy-meadows', 'naran-kaghan', 'murree-galiyat', 'islamabad', 'lahore', 'derawar-cholistan', 'mohenjo-daro', 'makli-thatta', 'hingol'],
+    // Baltistan circuit
+    ['fairy-meadows', 'skardu', 'deosai'],
+    // Neelum Valley branch
+    ['naran-kaghan', 'neelum'],
+    // Swat, Dir & Kalash Valleys branch
+    ['islamabad', 'swat-kalam', 'kumrat', 'kalash'],
+  ];
+
   return (
     <div className="schematic-map">
       <ContourArt className="schematic-map__contours" tone="dark" />
+      <svg className="schematic-map__route-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="schematicRouteGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stopColor="var(--teal-500)" stopOpacity="0.75" />
+            <stop offset="60%" stopColor="var(--teal-500)" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="var(--saffron-500)" stopOpacity="0.7" />
+          </linearGradient>
+        </defs>
+        {routeCorridors.map((corridor, idx) => {
+          const pts = corridor.map(getPos).filter(Boolean);
+          if (pts.length < 2) return null;
+          const dStr = `M ${pts.map((p) => `${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' L ')}`;
+          return (
+            <path
+              key={idx}
+              d={dStr}
+              fill="none"
+              stroke="url(#schematicRouteGrad)"
+              strokeWidth="1.2"
+              strokeDasharray="2.5 2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="schematic-map__route-line"
+            />
+          );
+        })}
+      </svg>
       {DESTINATIONS.map((d) => {
         const p = pos(d.coords);
         return (

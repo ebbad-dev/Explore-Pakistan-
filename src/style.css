@@ -1187,9 +1187,6 @@ main { min-height: 60vh; outline: none; }
 }
 
 /* 4. Schematic Map route line */
-.schematic-map {
-  position: relative;
-}
 .schematic-map__route-svg {
   position: absolute;
   inset: 0;
@@ -1197,6 +1194,10 @@ main { min-height: 60vh; outline: none; }
   height: 100%;
   pointer-events: none;
   z-index: 1;
+}
+.schematic-map__route-line {
+  filter: drop-shadow(0 0 3px rgba(64, 200, 188, 0.45));
+  transition: opacity 0.25s ease;
 }
 
 /* 5. Tactile card hover & zoom effects */
