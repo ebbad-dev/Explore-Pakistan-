@@ -4,5 +4,6 @@
   },
   "search.exclude": {
     "**/dist": true
-  }
+  },
+  "microsoft-edge-tools.compatCheck": false
 }
