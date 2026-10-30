@@ -43,7 +43,7 @@
 }
 
 /* Base */
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-ui);
   font-size: 1rem;
